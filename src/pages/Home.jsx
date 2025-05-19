@@ -1,9 +1,27 @@
 import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
 import { ScrollContainer } from "../components/ScrollContainer.jsx";
+import {DownloadGroupItem, DownloadItem} from "../services/SwapiTech.jsx"
 import { SingleCard } from "../components/SingleCard.jsx";
+import { useState, useEffect } from "react";
 
 export const Home = () => {
   const { store, dispatch } = useGlobalReducer();
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (loading) {
+      const downloadData = async () => {
+        const people = await DownloadGroupItem("people");
+        if (people) {
+          dispatch({ type: "set_store", payload: people });
+          console.log(people);
+        }
+        setLoading(false);
+      };
+      downloadData();      
+    }
+  }, []);
+
 
   return (
     <div className="bg-dark">
