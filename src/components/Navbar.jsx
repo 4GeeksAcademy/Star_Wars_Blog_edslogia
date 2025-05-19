@@ -5,7 +5,7 @@ import { MdDeleteOutline } from "react-icons/md";
 
 export const Navbar = () => {
   return (
-    <nav className="navbar fixed-top navbar-dark bg-dark">
+    <nav className="navbar sticky-top navbar-dark bg-dark">
       <div className="container">
         <Link to="/">
           <span className="navbar-brand mb-0 h1">
