@@ -8,7 +8,7 @@ export const CharacterCard = () => (
       className="card-img-top"
     ></img>
     <div className="card-body">
-      <h5 className="card-title">Nombre del personaje</h5>
+      <h5 className="card-title">Luke Skywalker</h5>
     </div>
     <ul className="list-group list-group-flush text-start">
       <li className="list-group-item">Heigth: 177</li>

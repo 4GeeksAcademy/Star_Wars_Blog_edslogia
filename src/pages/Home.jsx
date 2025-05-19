@@ -10,6 +10,8 @@ export const Home = () => {
 		<div className="bg-dark">
 			<ScrollContainer>
 				<CharacterCard/>
+				<CharacterCard/>
+				<CharacterCard/>
 			</ScrollContainer>
 		</div>
 	);
