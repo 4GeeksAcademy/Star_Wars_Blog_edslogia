@@ -2,3 +2,35 @@
     height: 50px;
     width: 100px;
 }
+
+.icon-favorites{
+    color: red;
+    padding-right: 5px;
+    font-size: 2rem;
+}
+
+.favorites-icon-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.favorites-count {
+    position: absolute;
+    top: 1px;
+    left: 4px;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 2px 5px;
+    min-width: 16px;
+}
+
+.icon-delete{
+    color: red;
+    font-size: 1.4rem;
+}
+
+.dropdown-item:hover{
+    background-color: rgb(182, 182, 182);
+}
+
