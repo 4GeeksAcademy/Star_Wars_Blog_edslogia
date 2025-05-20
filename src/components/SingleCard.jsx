@@ -1,7 +1,17 @@
 import { CiHeart } from "react-icons/ci";
-import "../styles/character-card.css"
+import "../styles/single-card.css"
+import {Link} from "react-router-dom"
 
-export const SingleCard = ({name, item1, item2, item3, imglink}) => (
+export const SingleCard = ({name, item1, item2, item3, imglink, linkTo}) => {
+
+  const handleFavorites = async () => {
+    try {
+    } catch (error) {
+      console.error("Error editando contacto: ", error)
+    }
+  };
+  
+  return(
   <div className="card">
     <img
       src={imglink}
@@ -16,12 +26,12 @@ export const SingleCard = ({name, item1, item2, item3, imglink}) => (
       <li className="list-group-item py-1">{item3}</li>
     </ul>
     <div className="card-body d-flex justify-content-between align-items-center p-2">
-      <button type="button" className="btn btn-outline-info">
+      <Link to={linkTo} type="button" className="btn btn-outline-info" >
         Learn more!
-      </button>
-      <button type="button" className="btn btn-outline-danger">
+      </Link>
+      <button type="button" className="btn btn-outline-danger" onClick={handleFavorites}>
         <CiHeart className="icon-heart"/>
       </button>
     </div>
   </div>
-);
+)};

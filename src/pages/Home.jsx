@@ -1,9 +1,9 @@
 import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
+import { AppConfig } from "../config/config.js";
 import { ScrollContainer } from "../components/ScrollContainer.jsx";
 import { fetchWithCache } from "../services/SwapiTech.jsx";
 import { SingleCard } from "../components/SingleCard.jsx";
 import { useState, useEffect } from "react";
-import { AppConfig } from "../config/config.js";
 
 export const Home = () => {
   const { store, dispatch } = useGlobalReducer();
@@ -42,6 +42,7 @@ export const Home = () => {
                 item2={`${fields[1].label}: ${item.properties[fields[1].key]}`}
                 item3={`${fields[2].label}: ${item.properties[fields[2].key]}`}
                 imglink={`${images[i]}`}
+                linkTo={`/${endpoint}/${item.uid}`}
               />
             );
           })}
