@@ -16,7 +16,7 @@ export async function DownloadItem(item,id) {
 export async function DownloadGroupItem(item) {
   try {
     const response = await fetch(
-      `https://www.swapi.tech/api/${item}/`
+      `${AppConfig.api.baseUrl}/${item}/`
     );
     const data = await response.json();
     return data;
@@ -24,3 +24,36 @@ export async function DownloadGroupItem(item) {
     throw error;
   }
 }
+
+export const fetchWithCache = async (endpoint, id, ttlMs = 86400000) => {
+  const cacheKey = `${endpoint}_${id}`;
+  const cached = localStorage.getItem(cacheKey);
+
+  if (cached) {
+    const parsed = JSON.parse(cached);
+    if (Date.now() < parsed.expiry) {
+      return parsed.value;
+    }
+    localStorage.removeItem(cacheKey); // Expiró
+  }
+
+  // Llamada a la API
+  try {
+    const res = await fetch(`${AppConfig.api.baseUrl}/${endpoint}/${id}`);
+    const data = await res.json();
+
+    // Guardamos con expiración
+    localStorage.setItem(
+      cacheKey,
+      JSON.stringify({
+        value: data,
+        expiry: Date.now() + ttlMs,
+      })
+    );
+
+    return data;
+  } catch (err) {
+    console.error(`Error fetching ${endpoint}/${id}:`, err);
+    return null;
+  }
+};

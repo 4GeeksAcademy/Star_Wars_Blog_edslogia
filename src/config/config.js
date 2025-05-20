@@ -4,7 +4,7 @@ export const AppConfig = {
 
   api: {
     baseUrl: "https://swapi.tech/api",
-    endpoints: ["people", "planets", "species", "starships"],
+    endpoints: ["people", "planets", "species"],
   },
 
   images: {
