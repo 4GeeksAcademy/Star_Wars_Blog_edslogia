@@ -1,11 +1,9 @@
 import { AppConfig } from "../config/config";
 import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
 
-export async function DownloadItem(item,id) {
+export async function DownloadItem(item, id) {
   try {
-    const response = await fetch(
-      `${AppConfig.api.baseUrl}/${item}/${id}/`
-    );
+    const response = await fetch(`${AppConfig.api.baseUrl}/${item}/${id}/`);
     const data = await response.json();
     return data;
   } catch (error) {
@@ -15,9 +13,7 @@ export async function DownloadItem(item,id) {
 
 export async function DownloadGroupItem(item) {
   try {
-    const response = await fetch(
-      `${AppConfig.api.baseUrl}/${item}/`
-    );
+    const response = await fetch(`${AppConfig.api.baseUrl}/${item}/`);
     const data = await response.json();
     return data;
   } catch (error) {
@@ -34,24 +30,28 @@ export const fetchWithCache = async (endpoint, id, ttlMs = 86400000) => {
     if (Date.now() < parsed.expiry) {
       return parsed.value;
     }
-    localStorage.removeItem(cacheKey); // Expiró
+    localStorage.removeItem(cacheKey);
+    console.log(
+      "Data expirada para: ",
+      `${endpoint}_${id}`,
+      ", descargando nueva data desde la API"
+    );
   }
 
-  // Llamada a la API
   try {
     const res = await fetch(`${AppConfig.api.baseUrl}/${endpoint}/${id}`);
     const data = await res.json();
 
-    // Guardamos con expiración
-    localStorage.setItem(
-      cacheKey,
-      JSON.stringify({
-        value: data,
-        expiry: Date.now() + ttlMs,
-      })
-    );
-
-    return data;
+    if (data) {
+      localStorage.setItem(
+        cacheKey,
+        JSON.stringify({
+          value: data.result,
+          expiry: Date.now() + ttlMs,
+        })
+      );
+      return data;
+    }
   } catch (err) {
     console.error(`Error fetching ${endpoint}/${id}:`, err);
     return null;

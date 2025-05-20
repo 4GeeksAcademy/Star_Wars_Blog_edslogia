@@ -4,7 +4,30 @@ export const AppConfig = {
 
   api: {
     baseUrl: "https://swapi.tech/api",
-    endpoints: ["people", "planets", "species"],
+    endpoints: ["people", "planets", "species" ],
+  },
+
+   fieldsToShow: {
+    people: [
+      { key: "height", label: "Height" },
+      { key: "eye_color", label: "Eye Color" },
+      { key: "gender", label: "Gender" },
+    ],
+    planets: [
+      { key: "population", label: "Population" },
+      { key: "climate", label: "Climate" },
+      { key: "gravity", label: "Gravity" },
+    ],
+    species: [
+      { key: "classification", label: "Classification" },
+      { key: "language", label: "Language" },
+      { key: "average_lifespan", label: "Lifespan" },
+    ],
+    starships: [
+      { key: "model", label: "Model" },
+      { key: "manufacturer", label: "Manufacturer" },
+      { key: "starship_class", label: "Class" },
+    ],
   },
 
   images: {
