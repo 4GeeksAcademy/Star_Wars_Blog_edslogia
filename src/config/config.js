@@ -57,7 +57,7 @@ export const AppConfig = {
     species: [
       "https://lumiere-a.akamaihd.net/v1/images/databank_lobot_01_169_8a50d7ae.jpeg?region=0%2C0%2C1560%2C878",
       "https://lumiere-a.akamaihd.net/v1/images/2-1b-droid-main-image_546a90ad.jpeg?region=0%2C107%2C1560%2C880",
-      "https://lumiere-a.akamaihd.net/v1/images/image_bf49c17e.jpeg?region=0%2C594%2C2153%2C1211",
+      "https://lumiere-a.akamaihd.net/v1/images/wookiees-main-b_fc850c5b.jpeg?region=8%2C0%2C1543%2C868",
       "https://lumiere-a.akamaihd.net/v1/images/rodian-main_de29c78f.jpeg?region=0%2C0%2C1280%2C721",
       "https://lumiere-a.akamaihd.net/v1/images/databank_hutt_01_169_5d0535d2.jpeg?region=0%2C0%2C1560%2C878",
       "https://lumiere-a.akamaihd.net/v1/images/databank_yaddle_01_169_3cfd7068.jpeg?region=0%2C0%2C1560%2C878",
