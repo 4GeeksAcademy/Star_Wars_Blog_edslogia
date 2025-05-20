@@ -33,7 +33,7 @@ export const Home = () => {
         <ScrollContainer key={endpoint} title={endpoint.toUpperCase()}>
           {store[endpoint].map((item, i) => {
             const fields = AppConfig.fieldsToShow[endpoint];
-
+            const images = AppConfig.images[endpoint];
             return (
               <SingleCard
                 key={`${endpoint}_${i}`}
@@ -41,9 +41,7 @@ export const Home = () => {
                 item1={`${fields[0].label}: ${item.properties[fields[0].key]}`}
                 item2={`${fields[1].label}: ${item.properties[fields[1].key]}`}
                 item3={`${fields[2].label}: ${item.properties[fields[2].key]}`}
-                imglink={
-                  "https://lumiere-a.akamaihd.net/v1/images/mon-mothma-main_effb3e9c.jpeg?region=168%2C0%2C944%2C531"
-                }
+                imglink={`${images[i]}`}
               />
             );
           })}
