@@ -11,16 +11,18 @@ export const Home = () => {
   useEffect(() => {
     if (loading) {
       const downloadData = async () => {
-        const people = await DownloadGroupItem("people");
+        const people = await DownloadItem("people","1");
         if (people) {
           dispatch({ type: "set_store", payload: people });
-          console.log(people);
         }
         setLoading(false);
       };
       downloadData();      
     }
-  }, []);
+    if (store.message == "ok") {      
+    console.log(store);
+    }
+  }, [store]);
 
 
   return (
