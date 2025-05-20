@@ -8,17 +8,29 @@ export const Detail = () => {
   const { endpoint, id } = useParams();
   const { store, dispatch } = useGlobalReducer();
   const item = store[endpoint]?.find((elelement) => elelement.uid === id);
+  const images = AppConfig.images[endpoint];
+  const fields = AppConfig.fieldsToShowInDetails[endpoint];
 
   return (
-    <div className="card">
-      <img src="..." className="card-img-top">
-      </img>
+    <div className="w-75 container bg-dark p-5">
+      <div className="row">
+        <div className="col-6">
+          <img src={`${images[id - 1]}`} className="card-img-top"></img>
+        </div>
+        <div className="col-6">
+          <h5 className="text-light">{item.properties.name}</h5>
+          <p className="text-light">{item.description}</p>
+        </div>
+      </div>
       <div className="card-body">
-        <h5 className="card-title">{item.properties.name}</h5>
-        <p className="card-text">
-          Some quick example text to build on the card title and make up the
-          bulk of the card’s content.
-        </p>
+        <div className="row">
+          {fields.slice(0, 7).map((field) => (
+            <div className="col" key={field.key}>
+              <h5 className="text-light">{field.label}</h5>
+              <p className="text-light">{item.properties[field.key]}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

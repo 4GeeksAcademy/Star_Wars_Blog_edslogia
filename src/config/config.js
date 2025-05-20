@@ -6,7 +6,7 @@ export const AppConfig = {
     endpoints: ["people", "planets", "species"],
   },
 
-  fieldsToShow: {
+  fieldsToShowInCard: {
     people: [
       { key: "height", label: "Height" },
       { key: "eye_color", label: "Eye Color" },
@@ -26,6 +26,35 @@ export const AppConfig = {
       { key: "model", label: "Model" },
       { key: "manufacturer", label: "Manufacturer" },
       { key: "starship_class", label: "Class" },
+    ],
+  },
+    fieldsToShowInDetails: {
+    people: [
+      { key: "height", label: "Height" },
+      { key: "eye_color", label: "Eye Color" },
+      { key: "gender", label: "Gender" },
+      { key: "birth_year", label: "Birth Year" },
+      { key: "hair_color", label: "Hair Color" },
+      { key: "mass", label: "Mass" },
+      { key: "skin_color", label: "Skin color" },
+    ],
+    planets: [
+      { key: "population", label: "Population" },
+      { key: "climate", label: "Climate" },
+      { key: "gravity", label: "Gravity" },
+      { key: "diameter", label: "Diameter" },
+      { key: "orbital_period", label: "Orbital period" },
+      { key: "terrain", label: "Terrain" },
+      { key: "rotation_period", label: "Rotation period" },
+    ],
+    species: [
+      { key: "classification", label: "Classification" },
+      { key: "language", label: "Language" },
+      { key: "average_lifespan", label: "Lifespan" },
+      { key: "average_height", label: "Average height" },
+      { key: "designation", label: "Designation" },
+      { key: "eye_colors", label: "Eye colors" },
+      { key: "hair_colors", label: "Hair colors" },
     ],
   },
 
@@ -66,7 +95,6 @@ export const AppConfig = {
       "https://lumiere-a.akamaihd.net/v1/images/databank_ewok_01_169_747db03a.jpeg?region=0%2C0%2C1560%2C878",
       "https://lumiere-a.akamaihd.net/v1/images/databank_sullustan_01_169_01e4c3e0.jpeg?region=0%2C0%2C1560%2C878",
     ],
-    starships: [],
   },
 
   values: {

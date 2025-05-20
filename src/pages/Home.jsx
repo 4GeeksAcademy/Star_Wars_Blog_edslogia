@@ -32,7 +32,7 @@ export const Home = () => {
       {AppConfig.api.endpoints.map((endpoint) => (
         <ScrollContainer key={endpoint} title={endpoint.toUpperCase()}>
           {store[endpoint].map((item, i) => {
-            const fields = AppConfig.fieldsToShow[endpoint];
+            const fields = AppConfig.fieldsToShowInCard[endpoint];
             const images = AppConfig.images[endpoint];
             return (
               <SingleCard
