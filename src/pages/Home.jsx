@@ -11,7 +11,7 @@ import { AppConfig } from "../config/config.js";
 
 export const Home = () => {
   const { store, dispatch } = useGlobalReducer();
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState();
 
   useEffect(() => {
 
@@ -28,10 +28,10 @@ export const Home = () => {
       setLoading(false);
     };
 
-    if (loading) {
+    if (loading !== false) {
       downloadData();
     }
-  }, [loading]);
+  }, []);
   
   if (loading) return <div className="text-light p-5">Loading...</div>;
 
