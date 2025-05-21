@@ -15,12 +15,11 @@ export const SingleCard = ({
 }) => {
   const { store, dispatch } = useGlobalReducer();
 
-  const handleFavorites = () => {
+  const handleFavorites = () => {    
     dispatch({
       type: "add_to_favorites",
       payload: { name, uid, endpoint },
     });
-    console.log("Favoritos:", store.favorites);
   };
 
   return (

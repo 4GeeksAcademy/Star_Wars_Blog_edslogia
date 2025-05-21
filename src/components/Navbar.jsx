@@ -15,10 +15,7 @@ export const Navbar = () => {
       <div className="container">
         <Link to="/">
           <span className="navbar-brand mb-0 h1">
-            <img
-              src={`${image.imageurl}`}
-              className="logo"
-            ></img>
+            <img src={`${image.imageurl}`} className="logo"></img>
           </span>
         </Link>
         <div className="ml-auto">
@@ -31,19 +28,36 @@ export const Navbar = () => {
             >
               <div className="favorites-icon-wrapper">
                 <FaHeart className="icon-favorites" />
-                <span className="favorites-count">{favorites.lenght}</span>
+                <span className="favorites-count">{`${favorites.length}`}</span>
               </div>
               <strong>Favorites</strong>
             </button>
             <ul className="dropdown-menu">
-              <li>
-                <a className="dropdown-item" href="#">
-                  <div className="d-flex justify-content-between align-items-center">
-                    <span>Action</span>
-                    <MdDeleteOutline className="icon-delete" />
-                  </div>
-                </a>
-              </li>
+              {favorites.length === 0 ? (
+                <li className="dropdown-item text-muted">No favorites yet</li>
+              ) : (
+                favorites.map((fav, index) => (
+                  <li key={index}>
+                    <div className="dropdown-item d-flex justify-content-between align-items-center">
+                      <Link
+                        to={`/${fav.endpoint}/${fav.uid}`}
+                        className="text-decoration-none text-dark"
+                      >
+                        {fav.name}
+                      </Link>
+                      <MdDeleteOutline
+                        className="icon-delete"
+                        onClick={() =>
+                          dispatch({
+                            type: "remove_from_favorites",
+                            payload: fav,
+                          })
+                        }
+                      />
+                    </div>
+                  </li>
+                ))
+              )}
             </ul>
           </div>
         </div>
