@@ -2,8 +2,10 @@ import { Link } from "react-router-dom";
 import "../styles/navbar.css";
 import { FaHeart } from "react-icons/fa";
 import { MdDeleteOutline } from "react-icons/md";
+import { useState } from "react";
 import useGlobalReducer from "../hooks/useGlobalReducer";
 import { AppConfig } from "../config/config";
+import { SearchBar } from "./SearchBar";
 
 export const Navbar = () => {
   const { store, dispatch } = useGlobalReducer();
@@ -11,7 +13,7 @@ export const Navbar = () => {
   const image = AppConfig.navbar;
 
   const handleDeleteFavorite = (fav) => {
-    console.log("favorito a borrar: ", fav)
+    console.log("favorito a borrar: ", fav);
     dispatch({
       type: "remove_from_favorites",
       payload: fav,
@@ -26,6 +28,7 @@ export const Navbar = () => {
             <img src={`${image.imageurl}`} className="logo"></img>
           </span>
         </Link>
+        <SearchBar />
         <div className="ml-auto">
           <div className="dropdown">
             <button
