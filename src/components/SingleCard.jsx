@@ -20,7 +20,7 @@ export const SingleCard = ({name, item1, item2, item3, imglink, linkTo}) => {
     <div className="card-body py-2">
       <h5 className="card-title m-0 text-center">{name}</h5>
     </div>
-    <ul className="list-group list-group-flush text-start p">
+    <ul className="list-group list-group-flush text-start ">
       <li className="list-group-item py-1">{item1}</li>
       <li className="list-group-item py-1">{item2}</li>
       <li className="list-group-item py-1">{item3}</li>
