@@ -2,8 +2,12 @@ import { Link } from "react-router-dom";
 import "../styles/navbar.css";
 import { FaHeart } from "react-icons/fa";
 import { MdDeleteOutline } from "react-icons/md";
+import useGlobalReducer from "../hooks/useGlobalReducer";
 
 export const Navbar = () => {
+  const { store, dispatch } = useGlobalReducer();
+  const favorites = store.favorites;
+
   return (
     <nav className="navbar sticky-top navbar-dark">
       <div className="container">
@@ -25,7 +29,7 @@ export const Navbar = () => {
             >
               <div className="favorites-icon-wrapper">
                 <FaHeart className="icon-favorites" />
-                <span className="favorites-count">2</span>
+                <span className="favorites-count">{favorites.lenght}</span>
               </div>
               <strong>Favorites</strong>
             </button>

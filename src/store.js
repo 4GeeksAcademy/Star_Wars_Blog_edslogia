@@ -2,11 +2,11 @@ export const initialStore = () => ({
   people: [],
   planets: [],
   species: [],
-  starships: [],
   config: {
     message: null,
-    developer: "edslogia"
-  }
+    developer: "edslogia",
+  },
+  favorites: JSON.parse(localStorage.getItem("favorites")) || [],
 });
 
 export default function storeReducer(store, action = {}) {
@@ -21,6 +21,24 @@ export default function storeReducer(store, action = {}) {
         ...store,
         [action.endpoint]: [...store[action.endpoint], action.payload],
       };
+
+    case "add_to_favorites":
+      const updatedFavorites = [...store.favorites, action.payload];
+      localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+      console.log("ejecutado en dispatch")
+      return { ...store, favorites: updatedFavorites };
+
+    case "remove_from_favorites":
+      const filtered = store.favorites.filter(
+        (fav) =>
+          !(
+            fav.uid === action.payload.uid &&
+            fav.endpoint === action.payload.endpoint
+          )
+      );
+      localStorage.setItem("favorites", JSON.stringify(filtered));
+      return { ...store, favorites: filtered };
+
     default:
       throw Error("Unknown action.");
   }

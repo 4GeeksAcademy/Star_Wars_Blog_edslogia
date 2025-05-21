@@ -42,6 +42,8 @@ export const Home = () => {
                 item2={`${fields[1].label}: ${item.properties[fields[1].key]}`}
                 item3={`${fields[2].label}: ${item.properties[fields[2].key]}`}
                 imglink={`${images[i]}`}
+                uid={item.uid}
+                endpoint={endpoint}
                 linkTo={`/${endpoint}/${item.uid}`}
               />
             );
