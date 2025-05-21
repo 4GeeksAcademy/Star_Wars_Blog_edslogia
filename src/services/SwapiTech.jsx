@@ -1,5 +1,4 @@
 import { AppConfig } from "../config/config";
-import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
 
 export async function DownloadItem(item, id) {
   try {
