@@ -30,7 +30,7 @@ export const Detail = () => {
     };
 
     fetchData();
-  }, []);
+  }, [endpoint,uid]);
 
   if (loading) {
     return <div className="text-light p-5">Loading...</div>;
