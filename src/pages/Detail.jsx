@@ -20,7 +20,6 @@ export const Detail = () => {
         setItem(found);
         setLoading(false);
       } else {
-        console.log(endpoint, "/", uid );
         const res = await fetchWithCache(endpoint, uid);
         if (res) {
           dispatch({ type: "add_data", endpoint, payload: res });

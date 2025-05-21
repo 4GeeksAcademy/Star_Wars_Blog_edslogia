@@ -25,7 +25,6 @@ export default function storeReducer(store, action = {}) {
     case "add_to_favorites":
       const updatedFavorites = [...store.favorites, action.payload];
       localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
-      console.log("ejecutado en dispatch")
       return { ...store, favorites: updatedFavorites };
 
     case "remove_from_favorites":

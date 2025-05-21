@@ -3,10 +3,12 @@ import "../styles/navbar.css";
 import { FaHeart } from "react-icons/fa";
 import { MdDeleteOutline } from "react-icons/md";
 import useGlobalReducer from "../hooks/useGlobalReducer";
+import { AppConfig } from "../config/config";
 
 export const Navbar = () => {
   const { store, dispatch } = useGlobalReducer();
   const favorites = store.favorites;
+  const image = AppConfig.navbar;
 
   return (
     <nav className="navbar sticky-top navbar-dark">
@@ -14,7 +16,7 @@ export const Navbar = () => {
         <Link to="/">
           <span className="navbar-brand mb-0 h1">
             <img
-              src="https://lumiere-a.akamaihd.net/v1/images/sw_logo_stacked_2x-52b4f6d33087_7ef430af.png?region=0,0,586,254"
+              src={`${image.imageurl}`}
               className="logo"
             ></img>
           </span>

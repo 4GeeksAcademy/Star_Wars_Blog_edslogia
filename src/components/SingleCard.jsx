@@ -16,11 +16,11 @@ export const SingleCard = ({
   const { store, dispatch } = useGlobalReducer();
 
   const handleFavorites = () => {
-    console.log("agregando a favoritos")
     dispatch({
       type: "add_to_favorites",
       payload: { name, uid, endpoint },
     });
+    console.log("Favoritos:", store.favorites);
   };
 
   return (
