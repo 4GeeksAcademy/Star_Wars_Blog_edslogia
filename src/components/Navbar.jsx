@@ -10,6 +10,13 @@ export const Navbar = () => {
   const favorites = store.favorites;
   const image = AppConfig.navbar;
 
+  const handleDeleteFavorite = () => {
+    dispatch({
+      type: "remove_from_favorites",
+      payload: fav,
+    });
+  };
+
   return (
     <nav className="navbar sticky-top navbar-dark">
       <div className="container">
@@ -47,12 +54,7 @@ export const Navbar = () => {
                       </Link>
                       <MdDeleteOutline
                         className="icon-delete"
-                        onClick={() =>
-                          dispatch({
-                            type: "remove_from_favorites",
-                            payload: fav,
-                          })
-                        }
+                        onClick={() => handleDeleteFavorite()}
                       />
                     </div>
                   </li>
