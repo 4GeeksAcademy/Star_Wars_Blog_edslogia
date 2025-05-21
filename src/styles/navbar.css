@@ -28,6 +28,7 @@
 .icon-delete{
     color: red;
     font-size: 1.4rem;
+    cursor: pointer;
 }
 
 .dropdown-item:hover{

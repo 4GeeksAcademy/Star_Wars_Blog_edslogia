@@ -10,7 +10,8 @@ export const Navbar = () => {
   const favorites = store.favorites;
   const image = AppConfig.navbar;
 
-  const handleDeleteFavorite = () => {
+  const handleDeleteFavorite = (fav) => {
+    console.log("favorito a borrar: ", fav)
     dispatch({
       type: "remove_from_favorites",
       payload: fav,
@@ -54,7 +55,7 @@ export const Navbar = () => {
                       </Link>
                       <MdDeleteOutline
                         className="icon-delete"
-                        onClick={() => handleDeleteFavorite()}
+                        onClick={() => handleDeleteFavorite(fav)}
                       />
                     </div>
                   </li>
