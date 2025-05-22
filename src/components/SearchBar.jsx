@@ -1,33 +1,51 @@
-import { useCallback, useState } from "react";
+import { useCallback, useState, useEffect } from "react";
 import debounce from "lodash.debounce";
 import useGlobalReducer from "../hooks/useGlobalReducer";
 import { Link } from "react-router-dom";
+import { AppConfig } from "../config/config";
 
-export const SearchBar = ({ onSearch }) => {
-  const { store, dispatch } = useGlobalReducer();
-  const [query, setQuery] = useState("");
+export const SearchBar = ({}) => {
+  const { store } = useGlobalReducer();
   const [filteredResults, setFilteredResults] = useState([]);
-
+  const [searchArray, setSearchArray] = useState([]);
+  const [query, setQuery] = useState("");
 
   const debouncedSearch = useCallback(
     debounce((value) => {
-      setQuery(value);
-      const allPeople = Object.values(store.people || {});
-      const filtered = allPeople.filter((person) =>
-        person.properties.name.toLowerCase().includes(value.toLowerCase())
+      const filtered = searchArray.filter((item) =>
+        item.name.toLowerCase().includes(value.toLowerCase())
       );
       setFilteredResults(filtered);
     }, 500),
-    [store.people]
+    [searchArray]
   );
 
   const handleChange = (e) => {
+    setQuery(e.target.value);
     debouncedSearch(e.target.value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
   };
+
+  useEffect(() => {
+    const endpoints = AppConfig.api.endpoints;
+    let results = [];
+    endpoints.forEach((endpoint) => {
+      const items = store[endpoint] || [];
+      items.forEach((item) => {
+        if (item?.properties?.name) {
+          results.push({
+            name: item.properties.name,
+            endpoint,
+            uid: item.uid,
+          });
+        }
+      });
+    });
+    setSearchArray(results);
+  }, [store]);
 
   return (
     <div className="position-relative">
@@ -37,6 +55,7 @@ export const SearchBar = ({ onSearch }) => {
           type="search"
           placeholder="Search"
           aria-label="Search"
+          value={query}
           onChange={handleChange}
         />
         <button className="btn btn-outline-light" type="submit">
@@ -48,8 +67,11 @@ export const SearchBar = ({ onSearch }) => {
         <ul className="list-group position-absolute mt-2 w-100">
           {filteredResults.map((result, i) => (
             <li key={i} className="list-group-item">
-              <Link to={`/${result.endpoint}/${result.uid}`} className="text-decoration-none">
-                {result.properties.name}
+              <Link
+                to={`/${result.endpoint}/${result.uid}`}
+                className="text-decoration-none"
+              >
+                {result.name} - {result.endpoint}
               </Link>
             </li>
           ))}
