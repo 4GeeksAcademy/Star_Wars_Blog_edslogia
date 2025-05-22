@@ -62,9 +62,6 @@ export const SearchBar = ({}) => {
           value={query}
           onChange={handleChange}
         />
-        <button className="btn btn-outline-light" type="submit">
-          Search
-        </button>
       </form>
 
       {filteredResults.length > 0 && (
