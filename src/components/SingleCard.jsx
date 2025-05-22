@@ -1,4 +1,5 @@
 import { CiHeart } from "react-icons/ci";
+import { FaHeart } from "react-icons/fa";
 import "../styles/single-card.css";
 import { Link } from "react-router-dom";
 import useGlobalReducer from "../hooks/useGlobalReducer";
@@ -15,7 +16,11 @@ export const SingleCard = ({
 }) => {
   const { store, dispatch } = useGlobalReducer();
 
-  const handleFavorites = () => {    
+  const isFavorite = store.favorites.some(
+    (fav) => fav.uid === uid && fav.endpoint === endpoint
+  );
+
+  const handleFavorites = () => {
     dispatch({
       type: "add_to_favorites",
       payload: { name, uid, endpoint },
@@ -42,7 +47,11 @@ export const SingleCard = ({
           className="btn btn-outline-danger"
           onClick={handleFavorites}
         >
-          <CiHeart className="icon-heart" />
+          {isFavorite ? (
+            <FaHeart className="icon-heart" />
+          ) : (
+            <CiHeart className="icon-heart" />
+          )}
         </button>
       </div>
     </div>

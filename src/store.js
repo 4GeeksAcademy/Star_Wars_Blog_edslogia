@@ -23,6 +23,10 @@ export default function storeReducer(store, action = {}) {
       };
 
     case "add_to_favorites":
+      const alreadyFavorite = store.favorites.some(
+        (fav) => fav.uid === action.payload.uid && fav.endpoint === action.payload.endpoint
+      );
+      if (alreadyFavorite) return store;
       const updatedFavorites = [...store.favorites, action.payload];
       localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
       return { ...store, favorites: updatedFavorites };
