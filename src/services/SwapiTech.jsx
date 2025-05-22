@@ -49,7 +49,7 @@ export const fetchWithCache = async (endpoint, id, ttlMs = 86400000) => {
           expiry: Date.now() + ttlMs,
         })
       );
-      return data;
+      return data.result;
     }
   } catch (err) {
     console.error(`Error fetching ${endpoint}/${id}:`, err);

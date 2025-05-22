@@ -4,7 +4,7 @@ import { ScrollContainer } from "../components/ScrollContainer.jsx";
 import { fetchWithCache } from "../services/SwapiTech.jsx";
 import { SingleCard } from "../components/SingleCard.jsx";
 import { useState, useEffect } from "react";
-import {MyLoader} from "../components/MyLoader.jsx"
+import { MyLoader } from "../components/MyLoader.jsx";
 
 export const Home = () => {
   const { store, dispatch } = useGlobalReducer();
@@ -17,6 +17,7 @@ export const Home = () => {
           const res = await fetchWithCache(endpoint, id);
           if (res) {
             dispatch({ type: "add_data", endpoint, payload: res });
+            console.log("descargado y despachado", res);
           }
         }
       }
@@ -29,7 +30,7 @@ export const Home = () => {
   }, []);
 
   if (loading !== false) {
-    return <MyLoader/>;
+    return <MyLoader />;
   }
 
   return (
