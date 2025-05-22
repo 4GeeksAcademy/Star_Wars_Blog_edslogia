@@ -12,6 +12,10 @@ export const SearchBar = ({}) => {
 
   const debouncedSearch = useCallback(
     debounce((value) => {
+      if (!value.trim()) {
+        setFilteredResults([]);
+        return;
+      }
       const filtered = searchArray.filter((item) =>
         item.name.toLowerCase().includes(value.toLowerCase())
       );
@@ -70,6 +74,10 @@ export const SearchBar = ({}) => {
               <Link
                 to={`/${result.endpoint}/${result.uid}`}
                 className="text-decoration-none"
+                onClick={() => {
+                  setQuery("");
+                  setFilteredResults([]);
+                }}
               >
                 {result.name} - {result.endpoint}
               </Link>
