@@ -26,7 +26,7 @@ export const SearchBar = ({}) => {
 
   const handleChange = (e) => {
     setQuery(e.target.value);
-    debouncedSearch(e.target.value);
+    debouncedSearch(query);
   };
 
   const handleSubmit = (e) => {
